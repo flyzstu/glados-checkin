@@ -40,14 +40,9 @@ func main() {
 			w := wxMsg{}
 			w.Title = "GLaDOS任务提醒"
 			w.URL = "https://fly97.cn"
-			checkFlag, user, useDays, leftDays := checkin(u.Cookie)
+			checkMsg, user, useDays, leftDays := checkin(u.Cookie)
 			timeStr, usage := usage(u.Cookie)
-			if checkFlag {
-				w.Description = fmt.Sprintf("用户%s签到成功，GlaDOS服务已经使用了%s天，剩余%s天，截至到%s已经使用了%s", user, useDays, leftDays, timeStr, usage)
-			} else {
-				w.Description = fmt.Sprintf("用户%s签到失败，GlaDOS服务已经使用了%s天，剩余%s天，截至到%s已经使用了%s", user, useDays, leftDays, timeStr, usage)
-			}
-
+			w.Description = fmt.Sprintf("用户%s签到信息:%s，GlaDOS服务已经使用了%s天，剩余%s天，截至到%s已经使用了%s", user, checkMsg, useDays, leftDays, timeStr, usage)
 			reqBodyBytes, err = json.Marshal(&w)
 			if err != nil {
 				panic(err)
