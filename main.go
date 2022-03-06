@@ -11,15 +11,14 @@ type userObj struct {
 	Email  string `json:"email"`
 	Cookie string `json:"cookie"`
 }
-type wxMsg struct {
-	// Reserved field to add some meta information to the API response
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	URL         string `json:"url"`
+
+// 请求
+type RequestContent struct {
+	Type    string `json:"msg_type"`
+	Content string `json:"content"`
 }
 
 func main() {
-
 	var (
 		users        = []userObj{}
 		reqBodyBytes = []byte{}
@@ -37,22 +36,16 @@ func main() {
 	for i := 0; i < len(users); i++ {
 		wg.Add(1)
 		go func(u userObj) {
-			w := wxMsg{}
-			w.Title = "GLaDOS任务提醒"
-			w.URL = "https://fly97.cn"
-			checkFlag, user, useDays, leftDays := checkin(u.Cookie)
+			w := RequestContent{}
+			w.Type = "text"
+			checkMsg, user, useDays, leftDays := checkin(u.Cookie)
 			timeStr, usage := usage(u.Cookie)
-			if checkFlag {
-				w.Description = fmt.Sprintf("用户%s签到成功，GlaDOS服务已经使用了%s天，剩余%s天，截至到%s已经使用了%s", user, useDays, leftDays, timeStr, usage)
-			} else {
-				w.Description = fmt.Sprintf("用户%s签到失败，GlaDOS服务已经使用了%s天，剩余%s天，截至到%s已经使用了%s", user, useDays, leftDays, timeStr, usage)
-			}
-
+			w.Content = fmt.Sprintf("GLaDOS任务提醒\n用户%s签到信息:%s，GlaDOS服务已经使用了%s天，剩余%s天，截至到%s已经使用了%s", user, checkMsg, useDays, leftDays, timeStr, usage)
 			reqBodyBytes, err = json.Marshal(&w)
 			if err != nil {
 				panic(err)
 			}
-			newRequest("POST", "http://127.0.0.1:8080/wx-api/sendMessage", "", "wf09", reqBodyBytes)
+			newRequest("POST", "http://127.0.0.1:7890/sendMessage", "", "wf09", reqBodyBytes)
 			wg.Done()
 		}((users)[i])
 	}

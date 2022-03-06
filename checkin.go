@@ -22,8 +22,7 @@ type statusResponse struct {
 }
 
 // 返回用户名，使用天数，剩余天数
-func checkin(cookie string) (bool, string, string, string) {
-	var checkFlag bool = true
+func checkin(cookie string) (string, string, string, string) {
 	// 构造结构体
 	reqBody := checkinRequestBody{
 		Token: "glados_network",
@@ -41,10 +40,6 @@ func checkin(cookie string) (bool, string, string, string) {
 
 	respObj := &checkResponse{}
 	parseBody(resp.Body, respObj)
-	if respObj.Code != 0 {
-		checkFlag = false
-		// return
-	}
 	resp, err = newRequest("GET", "https://glados.one/api/user/status", "https://glados.one/console/checkin", cookie, nil)
 	if err != nil {
 		panic(err)
@@ -62,7 +57,7 @@ func checkin(cookie string) (bool, string, string, string) {
 	days := fmt.Sprintf("%.0f", respObj2.Data["days"].(float64))
 	leftDays, _ := strconv.ParseFloat(respObj2.Data["leftDays"].(string), 64)
 
-	return checkFlag, email, days, fmt.Sprintf("%.0f", leftDays)
+	return respObj.Message, email, days, fmt.Sprintf("%.0f", leftDays)
 }
 
 // func main() {
