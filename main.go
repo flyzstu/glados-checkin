@@ -19,7 +19,7 @@ var conf *Config
 func main() {
 	opts = append(chromedp.DefaultExecAllocatorOptions[:],
 		// chromedp.NoSandbox,
-		// chromedp.DisableGPU,
+		chromedp.DisableGPU,
 		chromedp.Flag("headless", true), // 无头模式
 	)
 	var (

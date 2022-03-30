@@ -101,6 +101,7 @@ func getSubscriptionURL(cookie string) (scriptionURL string) {
 	defer cancal()
 	chromeCtx, cancal := chromedp.NewContext(allocCtx, chromedp.WithLogf(log.Printf))
 	defer cancal()
+	logger.Debug("准备运行chrome浏览器")
 	err := chromedp.Run(
 		chromeCtx,
 		network.Enable(),
@@ -117,6 +118,7 @@ func getSubscriptionURL(cookie string) (scriptionURL string) {
 		return
 	}
 	scriptionURL = node[0].AttributeValue("data-clipboard-text")
+	logger.Debug("退出chrome浏览器")
 	return
 }
 
