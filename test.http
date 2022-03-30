@@ -1,8 +1,0 @@
-POST https://fly97.cn/gh-api/updateBlog HTTP/1.1
-Cookie: wf09
-
-{
-    "title": "title",
-    "description": "Description",
-    "url": "URL"
-}

@@ -1,54 +1,35 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
+	"flag"
 	"sync"
+
+	"github.com/chromedp/chromedp"
+	"github.com/flyzstu/mylog"
 )
 
-type userObj struct {
-	Email  string `json:"email"`
-	Cookie string `json:"cookie"`
-}
-
-// 请求
-type RequestContent struct {
-	Type    string `json:"msg_type"`
-	Content string `json:"content"`
-}
+var opts []func(*chromedp.ExecAllocator)
+var wg sync.WaitGroup
+var logger = mylog.New()
+var userChan = make(chan *User, 100)
+var messageChan = make(chan *resultContent, 100)
+var userObj *resultContent
+var conf *Config
 
 func main() {
-	var (
-		users        = []userObj{}
-		reqBodyBytes = []byte{}
+	opts = append(chromedp.DefaultExecAllocatorOptions[:],
+		// chromedp.NoSandbox,
+		// chromedp.DisableGPU,
+		chromedp.Flag("headless", true), // 无头模式
 	)
-	// 读取users.json
-	data, err := ioutil.ReadFile("user.json")
-	if err != nil {
-		panic(err)
-	}
-	err = json.Unmarshal(data, &users)
-	if err != nil {
-		panic(err)
-	}
-	var wg sync.WaitGroup
-	for i := 0; i < len(users); i++ {
-		wg.Add(1)
-		go func(u userObj) {
-			w := RequestContent{}
-			w.Type = "text"
-			checkMsg, user, useDays, leftDays := checkin(u.Cookie)
-			timeStr, usage := usage(u.Cookie)
-			w.Content = fmt.Sprintf("GLaDOS任务提醒\n用户%s签到信息:%s，GlaDOS服务已经使用了%s天，剩余%s天，截至到%s已经使用了%s", user, checkMsg, useDays, leftDays, timeStr, usage)
-			reqBodyBytes, err = json.Marshal(&w)
-			if err != nil {
-				panic(err)
-			}
-			newRequest("POST", "http://127.0.0.1:7890/sendMessage", "", "wf09", reqBodyBytes)
-			wg.Done()
-		}((users)[i])
-	}
+	var (
+		confName = flag.String("f", "user.yaml", "Your configuration.")
+	)
+	flag.Parse()
+	logger.Info("解析配置文件成功")
+	conf = loadConf(*confName)
+	producer(conf)
+	go consumer()
+	go sendMessage()
 	wg.Wait()
-
 }
