@@ -1,0 +1,7 @@
+user:
+  - email: sinza1989@gmail.com
+    cookie: koa:sess=eyJ1c2VySWQiOjM1MTY2LCJfZXhwaXJlIjoxNjc0NDU5MTc0NzE4LCJfbWF4QWdlIjoyNTkyMDAwMDAwMH0=; koa:sess.sig=qHFEiNmiOU0CQUxWNjVmOjnbnog
+  - email: xmu@mail.sdu.edu.cn
+    cookie: koa:sess=eyJ1c2VySWQiOjEwMjY4MiwiX2V4cGlyZSI6MTY3NDUyODIzNzUyNSwiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=uT2bBQOZ9Lq8M5ZzW0hMqejWdo0
+hashkey: GQUDLGo6xeYOpmOn0UfMde
+bot_api: https://open.feishu.cn/open-apis/bot/v2/hook/7905ba33-776e-480a-90ea-90bb4ed03d85

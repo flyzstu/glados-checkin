@@ -7,7 +7,9 @@ import (
 )
 
 type Config struct {
-	Users []User `yaml:"user"`
+	Users   []User `yaml:"user"`
+	HashKey string `yaml:"hashkey"`
+	BOT_API string `yaml:"bot_api"`
 }
 
 type User struct {
@@ -15,7 +17,7 @@ type User struct {
 	Cookie string `yaml:"cookie"`
 }
 
-// 将yaml映射对象
+// 将yaml映射成对象
 func loadConf(confName string) *Config {
 	b, err := ioutil.ReadFile(confName)
 	if err != nil {
