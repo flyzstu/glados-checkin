@@ -1,13 +1,12 @@
 version: '3'
 services:
   checker:
-    container_name: checker
+    image: fly97/chrome
     environment:
       - LANG=en_US.UTF-8
       - TZ=Asia/Shanghai
-      - https_proxy=http://pi:10810
-    image: fly97/chrome
+      - https_proxy=http://nx:10810
     volumes:
-      - ./:/opt/checker:ro
-    command: bash -c "cd /opt/checker;./checker"
+      - ./src:/opt/checker:ro
+    command: bash -c "cd /opt/checker;./glados-checkin"
     
