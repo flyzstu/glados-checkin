@@ -63,7 +63,7 @@ func parseBody(body io.ReadCloser, respObj interface{}) {
 // 签到: 返回签到的信息
 func checkin(cookie string) string {
 	resObj := new(statusResponse)
-	payload := strings.NewReader(`{"token": "glados_network"}`)
+	payload := strings.NewReader(`{"token": "glados.network"}`)
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", checkinURL, payload)
 	if err != nil {
@@ -110,7 +110,7 @@ func getSubscriptionURL(cookie string) (scriptionURL string) {
 		chromedp.Nodes(`//*[@type="button"]`, &node, chromedp.NodeVisible),
 	)
 	if len(node) == 0 {
-		logger.Error("爬取订阅URL失败，请重试")
+		logger.Error("爬取订阅URL失败，请重试, 错误: %v", err.Error())
 		return
 	}
 	if err != nil {
