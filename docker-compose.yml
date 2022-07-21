@@ -1,7 +1,7 @@
 version: '3'
 services:
   checker:
-    image: fly97/chrome
+    image: fly97/chrome:arm64
     environment:
       - LANG=en_US.UTF-8
       - TZ=Asia/Shanghai
