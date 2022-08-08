@@ -1,12 +1,12 @@
 version: '3'
 services:
   checker:
-    image: fly97/chrome:arm64
+    build: .
     environment:
       - LANG=en_US.UTF-8
       - TZ=Asia/Shanghai
-      - https_proxy=http://nx:10810
+      - https_proxy=http://192.168.31.75:7890
     volumes:
       - ./src:/opt/checker:ro
-    command: bash -c "cd /opt/checker;./glados-checkin"
+    entrypoint: bash -c "cd /opt/checker;./glados-checkin"
     
