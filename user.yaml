@@ -1,5 +1,5 @@
 user:
-  - email: xmu@mail.sdu.edu.cn
-    cookie: koa:sess=eyJ1c2VySWQiOjEwMjY4MiwiX2V4cGlyZSI6MTY4Mzk2NzQ2NTk1MiwiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=sxSIPFgN3fOwDd_4nNr65-vWz28; Cookie=enabled; Cookie.sig=lbtpENsrE0x6riM8PFTvoh9nepc
-hashkey: xD4E7ibF2x91HCZCakGYKc
-bot_api: https://open.feishu.cn/open-apis/bot/v2/hook/41723071-548e-4044-a402-c1b36641f96d
+  - email: flyzstu@gmail.com
+    cookie: koa:sess=eyJjb2RlIjoiR1NBQUQtV0E0R0wtNEswVzItSkdRUDEiLCJ1c2VySWQiOjEwMjY4MiwiX2V4cGlyZSI6MTcxNTQ3NDI4MjUxOSwiX21heEFnZSI6MjU5MjAwMDAwMDB9; koa:sess.sig=gKVn_M0kmUFOs3yinc49qfuTe10
+hashkey: eOh85UMBS0lxot7jTFCElb
+bot_api: https://open.feishu.cn/open-apis/bot/v2/hook/e0c2b40c-3de6-4f1d-b2ad-822ed8465d9a

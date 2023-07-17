@@ -2,7 +2,8 @@
 Description=GLaDOS Checkin Service
 
 [Service]
-ExecStart=/usr/bin/docker compose -f /home/wf09/glados/docker-compose.yml up
-
+ExecStart=/usr/local/bin/gc -f /etc/gc/user.yaml
+Environment="LANG=en_US.UTF-8"
+Environment="TZ=Asia/Shanghai"
 [Install]
 WantedBy=multi-user.target
