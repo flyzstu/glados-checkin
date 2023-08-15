@@ -63,7 +63,7 @@ func parseBody(body io.ReadCloser, respObj interface{}) {
 // 签到: 返回签到的信息
 func checkin(cookie string) string {
 	resObj := new(statusResponse)
-	payload := strings.NewReader(`{"token": "glados.network"}`)
+	payload := strings.NewReader(`{"token": "glados.one"}`)
 	client := &http.Client{}
 	req, err := http.NewRequest("POST", checkinURL, payload)
 	if err != nil {
