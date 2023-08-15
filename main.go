@@ -20,7 +20,7 @@ func main() {
 	opts = append(chromedp.DefaultExecAllocatorOptions[:],
 		// chromedp.NoSandbox,
 		// chromedp.DisableGPU,
-		chromedp.Flag("headless", false), // 无头模式
+		chromedp.Flag("headless", true), // 无头模式
 	)
 	var (
 		confName = flag.String("f", "user.yaml", "Your configuration.")
