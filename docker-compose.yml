@@ -7,5 +7,5 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - ./src:/src:ro
-    entrypoint: bash -c "cd /opt/;./checker"
+    entrypoint: bash -c "cd /src; checker"
     
