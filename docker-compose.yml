@@ -3,9 +3,10 @@ services:
   checker:
     build: .
     environment:
+      - HTTPS_PROXY=http://192.168.0.1:20810
       - LANG=en_US.UTF-8
       - TZ=Asia/Shanghai
     volumes:
-      - ./src:/src:ro
+      - ./src/user.yaml:/src/user.yaml:ro
     entrypoint: bash -c "cd /src; checker"
     
