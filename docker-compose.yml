@@ -7,5 +7,5 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - ./src:/src:ro
-    entrypoint: bash -c "cd /src; checker"
+    entrypoint: bash -c "strings /lib/x86_64-linux-gnu/libc.so.6 |grep GLIBC_; cd /src; checker"
     
