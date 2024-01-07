@@ -1,6 +1,6 @@
 FROM golang as builder
-COPY *.go go.mod go.sum /tmp/
-WORKDIR /tmp
+COPY src /src
+WORKDIR /src
 RUN set -ex \
     && go env -w GOPROXY=https://goproxy.cn \
     && CGO_ENABLED=0 go build
