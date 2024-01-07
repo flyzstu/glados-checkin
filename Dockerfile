@@ -1,5 +1,13 @@
+FROM golang as builder
+COPY *.go go.* /tmp/
+WORKDIR /tmp
+RUN set -ex \
+    && go env -w GOPROXY=https://goproxy.cn \
+    && CGO_ENABLED=0 go build
+
+
 FROM chromedp/headless-shell
-COPY glados-checkin /usr/local/bin/checker
+COPY --from=builder /tmp/glados-checkin /usr/local/bin/checker
 COPY user.yaml /opt/
 RUN set -ex \
     && chmod +x /usr/local/bin/checker \
