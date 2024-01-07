@@ -1,5 +1,5 @@
 FROM golang as builder
-COPY *.go go.* /tmp/
+COPY *.go go.mod go.sum /tmp/
 WORKDIR /tmp
 RUN set -ex \
     && go env -w GOPROXY=https://goproxy.cn \
