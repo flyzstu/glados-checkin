@@ -7,7 +7,7 @@ RUN set -ex \
 
 
 FROM chromedp/headless-shell
-COPY --from=builder /tmp/glados-checkin /usr/local/bin/checker
+COPY --from=builder /src/glados-checkin /usr/local/bin/checker
 COPY user.yaml /opt/
 RUN set -ex \
     && chmod +x /usr/local/bin/checker \
