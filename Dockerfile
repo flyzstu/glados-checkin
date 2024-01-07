@@ -8,8 +8,8 @@ RUN set -ex \
 
 FROM chromedp/headless-shell
 COPY --from=builder /src/glados-checkin /usr/local/bin/checker
-COPY user.yaml /src/user.yaml
 RUN set -ex \
+    && mkdir /src \
     && chmod +x /usr/local/bin/checker \
     && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
     && sed -i  's|security.debian.org/debian-security|mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list \

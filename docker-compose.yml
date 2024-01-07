@@ -7,6 +7,6 @@ services:
       - LANG=en_US.UTF-8
       - TZ=Asia/Shanghai
     volumes:
-      - ./src/user.yaml:/src/user.yaml:ro
+      - ./user.yaml:/src/user.yaml:ro
     entrypoint: bash -c "cd /src; checker"
     
