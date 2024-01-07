@@ -6,8 +6,6 @@ services:
       - LANG=en_US.UTF-8
       - TZ=Asia/Shanghai
     volumes:
-      - ./src:/opt/checker:ro
-    extra_hosts:
-    - "glados.one:5.255.98.46"
-    entrypoint: bash -c "cd /opt/checker;./glados-checkin"
+      - ./src:/src:ro
+    entrypoint: bash -c "cd /opt/;./checker"
     

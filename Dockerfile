@@ -1,5 +1,5 @@
 FROM chromedp/headless-shell
-COPY glados-checkin /opt/checker
+COPY glados-checkin /usr/local/bin
 COPY user.yaml /opt/
 RUN set -ex \
     && sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
