@@ -118,6 +118,7 @@ func getSubscriptionURL(cookie string) (scriptionURL string) {
 		return
 	}
 	scriptionURL = node[0].AttributeValue("data-clipboard-text")
+
 	logger.Debug("退出chrome浏览器")
 	return
 }
